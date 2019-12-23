@@ -33,6 +33,7 @@ public class Player {
 	
 	/**
 	 * Reads a command given by the player in the console
+	 * @param input The string of the command, unparsed
 	 * @param gameInstance The current <code>GameInstance</code>
 	 * @return Returns the output of the command, if there is anything
 	 */
