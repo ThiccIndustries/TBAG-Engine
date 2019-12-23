@@ -1,6 +1,9 @@
 package tbag.io;
 
+import java.util.ArrayList;
+
 import tbag.location.Location;
+import tbag.management.Trade;
 
 /**
  * Contains methods for outputting to the console
@@ -17,6 +20,7 @@ public class Terminal {
 	 */
 	public void displayLocation(GameInstance gi) {
 		if(lastLocation != gi.player.currentLocation) {
+			gi.player.availableTrades = new ArrayList<Trade>();
 			StringBuilder sb = new StringBuilder();
 			sb.append("\n> " + gi.player.currentLocation.dspName + " <");
 			sb.append("\n" + gi.player.currentLocation.dspDesc);

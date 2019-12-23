@@ -19,6 +19,12 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+/**
+ * Class for creation of a custom window to be used instead of the native command line.
+ * Allows for colors and font scaling.
+ * @see <a href=https://www.youtube.com/channel/UCKwypsRGgHj1mrlQXhLXsvg>Vallentin's Java Tutorials</a>
+ * @author Trevor Skupien
+ */
 public class Window {
 	public JFrame frame;
 	public JTextPane terminalDisplay;
@@ -32,6 +38,11 @@ public class Window {
 	
 	private Style style;
 	
+	/**
+	 * Constructor creating and opening the window
+	 * @param sizeX width of the window in pixels
+	 * @param sizeY height of the window in pixels
+	 */
 	public Window(int sizeX, int sizeY) {
 		frame = new JFrame();
 		frame.setTitle("test");
@@ -109,6 +120,10 @@ public class Window {
 		});
 	}
 	
+	/**
+	 * Prints an object to the window.
+	 * @param o Object to print.
+	 */
 	public void append(Object o) {
 		String stringToAppend = o.toString();
 		StyleConstants.setForeground(style, Color.WHITE);
@@ -120,6 +135,11 @@ public class Window {
 			e1.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Prints an error to the window.
+	 * @param o Error object to print.
+	 */
 	public void appendError(Object o) {
 		String stringToAppend = o.toString();
 		StyleConstants.setForeground(style, Color.RED);
@@ -131,6 +151,11 @@ public class Window {
 			e1.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Waits for an input from the text input
+	 * @return String entered by user
+	 */
 	public String Listen() {
 		try {
 			semaphore.acquire();

@@ -3,8 +3,11 @@ package tbag.io;
 import java.lang.reflect.Method;
 
 import java.util.Arrays;
+import java.util.List;
+
 import tbag.location.Location;
 import tbag.management.Inventory;
+import tbag.management.Trade;
 
 /**
  * Contains methods and information relevant to the player and the player's input.
@@ -16,6 +19,7 @@ public class Player {
 	public Location currentLocation;
 	public boolean alive = true;
 	public Inventory inv = new Inventory();
+	public List<Trade> availableTrades;
 	
 	public int currency = 0;
 	public String currencyName = "Coins";

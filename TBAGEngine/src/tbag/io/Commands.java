@@ -2,7 +2,9 @@ package tbag.io;
 
 import java.lang.reflect.Method;
 
+import tbag.location.TownLocation;
 import tbag.management.Item;
+import tbag.management.Trade;
 
 /**
  * Contains standard TBAG Commands
@@ -94,6 +96,55 @@ public class Commands {
 		}
 		returnString += "\n";
 		return returnString;
+	}
+	
+	/**
+	 * Displays all the available trades in the Shop of a Town Location.
+	 * <p>
+	 * Sets the player's availableTrades to the shop's trades
+	 * @param args Not used in this command
+	 * @param gameInstance Current game instance.
+	 * @return Returns the available Trades in a formatted String.
+	 */
+	public String shop(String[] args, GameInstance gameInstance) {
+	String shopContents = null;
+	try {
+	if(((TownLocation)gameInstance.player.currentLocation).shop != null) {
+		gameInstance.player.availableTrades = ((TownLocation)gameInstance.player.currentLocation).shop.availableTrades;
+		StringBuilder sb = new StringBuilder();
+		sb.append("Available trades:");
+		
+		for(int i = 0; i < gameInstance.player.availableTrades.size(); i++) {
+			sb.append("\n[ " + (i+1) + " ] " + gameInstance.player.availableTrades.get(i).itemAvailable.name + ": " + gameInstance.player.availableTrades.get(i).cost + " each");
+		}
+		
+		shopContents = sb.toString();
+	}
+	}catch(Exception e) { gameInstance.terminal.displayError(e.toString(), gameInstance); }
+	return shopContents;
+	}
+	
+	/**
+	 * Buys one of the trades in the player's available trades
+	 * @param args The index of the trade (displayed index, starting at 1)
+	 * @param gameInstance The current game instance
+	 * @return Returns the success or reason of failure.
+	 */
+	public String buy(String[] args, GameInstance gameInstance) {
+		String output = null;
+		try {
+			Trade temp = gameInstance.player.availableTrades.get(Integer.parseInt(args[0]) - 1);
+			if(temp.cost <= gameInstance.player.currency) {
+				gameInstance.player.currency -= temp.cost;
+				gameInstance.player.inv.addItem(temp.itemAvailable, 1);
+				output = "You've bought one " + temp.itemAvailable.name + " for " + temp.cost + " " + gameInstance.player.currencyName;
+			}else {
+				output = "You cant afford to buy that.";
+			}
+		}catch(Exception e) {
+			output = "That trade isn't available.";
+		}
+		return output;
 	}
 	
 	/**
