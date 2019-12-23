@@ -1,5 +1,6 @@
 package tbag.location;
 
+import tbag.io.GameInstance;
 import tbag.management.Shop;
 
 public class TownLocation extends Location{
@@ -49,5 +50,10 @@ public class TownLocation extends Location{
 	 */
 	public TownLocation(String name, String desc, Location northTravel, Location eastTravel, Location southTravel, Location westTravel) {
 		super(name,desc,northTravel,eastTravel,southTravel,westTravel);
+	}
+	
+	@Override
+	public void onVisit(GameInstance gi) {
+		gi.terminal.display(welcomeMessage, gi);
 	}
 }
