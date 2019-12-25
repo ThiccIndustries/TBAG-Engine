@@ -14,6 +14,8 @@ import tbag.management.Trade;
  * Contains the player's current position as a <code>Location</code> object.
  * @author Trevor Skupien
  */
+
+
 public class Player {
 
 	public Location currentLocation;

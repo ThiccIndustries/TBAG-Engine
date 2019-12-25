@@ -2,6 +2,7 @@ package tbag.io;
 
 import java.lang.reflect.Method;
 
+import tbag.location.OptItemPickupLocation;
 import tbag.location.TownLocation;
 import tbag.management.Item;
 import tbag.management.Trade;
@@ -145,6 +146,13 @@ public class Commands {
 			output = "That trade isn't available.";
 		}
 		return output;
+	}
+	
+	public String pickup(String[] args, GameInstance gameInstance) {
+		try {
+			OptItemPickupLocation temp = ((OptItemPickupLocation)gameInstance.player.currentLocation);
+			return(temp.pickupItem(gameInstance));
+		}catch(Exception e) {return("Theres nothing to pickup here.");}
 	}
 	
 	/**
