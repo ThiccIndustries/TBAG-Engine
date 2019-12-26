@@ -137,6 +137,23 @@ public class Window {
 	}
 	
 	/**
+	 * Prints a dialog message to the window.
+	 * @param o Error object to print.
+	 * @param c Color to print in.
+	 */
+	public void appendColor(Object o, Color c) {
+		String stringToAppend = o.toString();
+		StyleConstants.setForeground(style, c);
+		StyleConstants.setBold(style, false);
+		try {
+			document.insertString(document.getLength(), stringToAppend, style);
+		} catch (BadLocationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+	/**
 	 * Prints an error to the window.
 	 * @param o Error object to print.
 	 */
@@ -166,4 +183,5 @@ public class Window {
 		System.out.println("here");
 		return inputText;
 	}
+
 }

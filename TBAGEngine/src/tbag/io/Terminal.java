@@ -1,5 +1,6 @@
 package tbag.io;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import tbag.location.Location;
@@ -12,7 +13,7 @@ import tbag.management.Trade;
 public class Terminal {
 	
 	private Location lastLocation = null;
-
+	private Color[] colorCodes = {Color.white, Color.blue, Color.green, Color.cyan, Color.red, Color.magenta, Color.yellow, Color.lightGray};
 	/**
 	 * Displays the player's current location's name and description.
 	 * Depending on the locations display mode, will display the name of adjacent locations.
@@ -57,11 +58,23 @@ public class Terminal {
 	 */
 	public void display(Object o, GameInstance gi) {
 		if(o != null) {
+			String[] sArray = o.toString().trim().split("&");
 			gi.window.append("\n");
-			gi.window.append(o);
+			Color currentColor = Color.white;
+			for(String s : sArray) {
+				if(s.length() > 1) {
+					try {
+						currentColor = colorCodes[Integer.parseInt(s.substring(0,1))];
+						s = s.substring(1);
+					}catch(Exception e) {
+						currentColor = Color.white;
+					}
+				}
+				gi.window.appendColor(s , currentColor);
+			}
 		}
 	}
-	
+
 	/**
 	 * Outputs <code>o</code> as a red, bold error.
 	 * @param o Object displayed
@@ -73,4 +86,5 @@ public class Terminal {
 			gi.window.appendError(o);
 		}
 	}
+	
 }

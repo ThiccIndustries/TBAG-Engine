@@ -29,7 +29,7 @@ public class MessageEvent extends Event{
 	@Override
 	public void Execute(GameInstance gameInstance) {
 		if(!executed || allowRepeatExecution) {
-			gameInstance.terminal.display(message, gameInstance);
+			gameInstance.terminal.display("&2> " + message, gameInstance);
 			executed = true;
 		}
 	}

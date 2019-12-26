@@ -4,7 +4,7 @@ import tbag.io.GameInstance;
 import tbag.management.Shop;
 
 public class TownLocation extends Location{
-	public String welcomeMessage = "";
+	public String welcomeMessage;
 	public Shop shop;
 	/**
 	 * Use this to manually specify a display mode on external locations

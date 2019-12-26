@@ -79,14 +79,19 @@ public class OptItemPickupLocation extends Location{
 	
 	/**
 	 * executed by the 'pickup' <code>Command</code>
+	 * @param name Name of the Item that the player is attempting to pick up
 	 * @param gameInstance The current Game Instance
 	 * @return returns a formatted <code>String</code>
 	 */
-	public String pickupItem(GameInstance gameInstance) {
+	public String pickupItem(String name, GameInstance gameInstance) {
 		if(!recieved) {
-			gameInstance.player.inv.addItem(itemPickup, 1);
-			recieved = true;
-			return("You've picked up a(n) " + itemPickup.name + " " + itemLocation);
+			if(name.toLowerCase().equals(itemPickup.name.toLowerCase())) {
+				gameInstance.player.inv.addItem(itemPickup, 1);
+				recieved = true;
+				return("You've picked up a(n) " + itemPickup.name + " " + itemLocation);
+			}else {
+				return("I dont see a(n) " + name.toLowerCase() + " here.");
+			}
 		}
 		return("There isn't anything to pickup.");
 	}

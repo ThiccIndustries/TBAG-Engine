@@ -32,7 +32,7 @@ public class Commands {
 	 */
 	public String echo(String[] message, GameInstance gameInstance) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("> ");
+		sb.append("&2> ");
 		for(String s : message){
 			sb.append(s + " ");
 		}
@@ -75,9 +75,9 @@ public class Commands {
 	public String bag(String[] args, GameInstance gameInstance) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("You Have:");
-		sb.append("\n" + gameInstance.player.currency + " " + gameInstance.player.currencyName);
+		sb.append("\n&6 " + gameInstance.player.currency + " " + gameInstance.player.currencyName);
 		for(Item i : gameInstance.player.inv.inventoryItems) {
-			sb.append("\n" + i.name + ": " + gameInstance.player.inv.inventoryQuantities.get(gameInstance.player.inv.inventoryItems.indexOf(i)));
+			sb.append("\n&6 " + i.name + ": " + gameInstance.player.inv.inventoryQuantities.get(gameInstance.player.inv.inventoryItems.indexOf(i)));
 		}
 		return sb.toString();
 	}
@@ -93,7 +93,7 @@ public class Commands {
 		Method[] commands = this.getClass().getDeclaredMethods();
 		String returnString = "Available commands: ";
 		for(Method command : commands) {
-			returnString += "\n" + command.getName();
+			returnString += "\n &6" + command.getName();
 		}
 		returnString += "\n";
 		return returnString;
@@ -121,7 +121,7 @@ public class Commands {
 		
 		shopContents = sb.toString();
 	}
-	}catch(Exception e) { gameInstance.terminal.displayError(e.toString(), gameInstance); }
+	}catch(Exception e) { return("There isn't a shop here."); }
 	return shopContents;
 	}
 	
@@ -148,10 +148,16 @@ public class Commands {
 		return output;
 	}
 	
-	public String pickup(String[] args, GameInstance gameInstance) {
+	/**
+	 * Pickups up the <code>Item</code> from an <code>Optional Item Pickup Location</code>
+	 * @param item The name of the item the player is trying to pick up
+	 * @param gameInstance The current Game Instance
+	 * @return Returns a formatted <code>String</code>
+	 */
+	public String pickup(String[] item, GameInstance gameInstance) {
 		try {
 			OptItemPickupLocation temp = ((OptItemPickupLocation)gameInstance.player.currentLocation);
-			return(temp.pickupItem(gameInstance));
+			return(temp.pickupItem(item[0], gameInstance));
 		}catch(Exception e) {return("Theres nothing to pickup here.");}
 	}
 	
