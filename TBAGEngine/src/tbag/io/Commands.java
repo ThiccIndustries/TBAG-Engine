@@ -2,6 +2,8 @@ package tbag.io;
 
 import java.lang.reflect.Method;
 
+import tbag.location.ItemPickupLocation;
+import tbag.location.Location;
 import tbag.location.OptItemPickupLocation;
 import tbag.location.TownLocation;
 import tbag.management.Item;
@@ -171,5 +173,56 @@ public class Commands {
 
 		System.exit(0);
 		return null;
+	}
+	
+	/**
+	 * Displays all variable values in <code>gameInstance</code>
+	 * @param args Not used in this command
+	 * @param gameInstance The current Game Instance
+	 * @return returns a formatted <code>String<code>
+	 */
+	public String dev(String[] args, GameInstance gameInstance) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("\nDev Data: ");
+		sb.append("\n&3Player:");
+		sb.append("\n&6	Alive: " +gameInstance.player.alive);
+		sb.append("\n&6	Currency: " +gameInstance.player.currency);
+		sb.append("\n&6	Currency Name: " +gameInstance.player.currencyName);
+		Location l = gameInstance.player.currentLocation;
+		String type = l.getClass().getName().split("tbag.location.")[1];
+		sb.append("\n&6	Current Location: " + gameInstance.player.currentLocation.dspName + "( " + l.toString().split("tbag.location." + type + ".")[1] + " )" );
+		sb.append("\n&6	Available Trades:");
+		for(Trade t : gameInstance.player.availableTrades) {
+			sb.append("\n&5		" + t.itemAvailable.name + " for " + t.cost);
+		}
+		sb.append("\n&6	Iventory Contents:");
+		for(Item i : gameInstance.player.inv.inventoryItems) {
+			sb.append("\n&5		" + i.name + " - " + gameInstance.player.inv.inventoryQuantities.get(gameInstance.player.inv.inventoryItems.indexOf(i)));
+		}
+		sb.append("\n&3Location: ");
+		sb.append("\n&6	UUID: " + l.toString().split("tbag.location." + type + ".")[1]);
+		sb.append("\n&6	Name: " + l.dspName);
+		sb.append("\n&6	Desc: " + l.dspDesc);
+		sb.append("\n&6	Type: " + type);
+		
+		//item pickup
+		try{sb.append("\n&6	Item Pickup: " + ((ItemPickupLocation)l).itemPickup.name );}catch(Exception e) {}
+		try{sb.append("\n&6	Optional Item Pickup: " + ((OptItemPickupLocation)l).itemPickup.name );}catch(Exception e) {}
+		
+		//shop
+		try{
+			TownLocation tl = (TownLocation)l;
+			sb.append("\n&6 	Shop Contents:");
+			for (Trade t : tl.shop.availableTrades) {
+				sb.append("\n&5		" + t.itemAvailable.name + " for " + t.cost);
+			}
+		}catch(Exception e) {}
+		sb.append("\n&3Terminal:");
+		sb.append("\n&6	Last Location: " + gameInstance.terminal.lastLocation.dspName + "( " + l.toString().split("tbag.location." + type + ".")[1] + " )" );
+		sb.append("\n&3Window:");
+		sb.append("\n&6	Resolution: [ " + gameInstance.window.sizeX + " x " + gameInstance.window.sizeY + " ]");
+		sb.append("\n&6	Scale: " + gameInstance.window.scale);
+		sb.append("\n&6	Font Size: " + (int)(12 * gameInstance.window.scale));
+		return sb.toString();
 	}
 }

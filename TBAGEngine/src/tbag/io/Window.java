@@ -31,20 +31,24 @@ public class Window {
 	public JTextPane imageDisplay;	
 	public JTextField input;
 	public JScrollPane scrollPane;
-	private int scale = 1;
+	public float scale = 1;
 	public StyledDocument document;
 	private Semaphore semaphore = new Semaphore(0);
 	private String inputText;
 	private JScrollBar vertical;
 	private Style style;
 	
+	public int sizeX = 0;
+	public int sizeY = 0;
 	/**
 	 * Constructor creating and opening the window
 	 * @param sizeX width of the window in pixels
 	 * @param sizeY height of the window in pixels
 	 */
 	public Window(int sizeX, int sizeY) {
-		scale = (sizeX / 800);
+		this.sizeX = sizeX;
+		this.sizeY = sizeY;
+		scale = ((float)sizeX / 800);
 		frame = new JFrame();
 		frame.setTitle("test");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,13 +57,13 @@ public class Window {
 		imageDisplay.setEditable(false);
 		imageDisplay.setOpaque(false);
 		imageDisplay.setForeground(Color.WHITE);
-		imageDisplay.setFont(new Font("Courier New", Font.PLAIN, (12 * scale)));
+		imageDisplay.setFont(new Font("Courier New", Font.PLAIN, (int)(12 * scale)));
 		
 		terminalDisplay = new JTextPane();
 		terminalDisplay.setEditable(false);
 		terminalDisplay.setOpaque(false);
 		terminalDisplay.setForeground(Color.WHITE);
-		terminalDisplay.setFont(new Font("Courier New", Font.PLAIN, (12 * scale)));
+		terminalDisplay.setFont(new Font("Courier New", Font.PLAIN, (int)(12 * scale)));
 		
 		document = terminalDisplay.getStyledDocument();
 		style = terminalDisplay.addStyle("Style", null);
@@ -68,7 +72,7 @@ public class Window {
 		input.setOpaque(false);
 		input.setForeground(Color.WHITE);
 		input.setCaretColor(Color.WHITE);
-		input.setFont(new Font("Courier New", Font.PLAIN, (12 * scale)));
+		input.setFont(new Font("Courier New", Font.PLAIN, (int)(12 * scale)));
 		
 		scrollPane = new JScrollPane(terminalDisplay);
 		scrollPane.setOpaque(false);

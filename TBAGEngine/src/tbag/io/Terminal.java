@@ -12,7 +12,7 @@ import tbag.management.Trade;
  */
 public class Terminal {
 	
-	private Location lastLocation = null;
+	public Location lastLocation = null;
 	private Color[] colorCodes = {Color.white, Color.blue, Color.green, Color.cyan, Color.red, Color.magenta, Color.yellow, Color.lightGray};
 	/**
 	 * Displays the player's current location's name and description.
