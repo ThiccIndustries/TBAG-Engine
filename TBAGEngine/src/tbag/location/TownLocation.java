@@ -55,5 +55,6 @@ public class TownLocation extends Location{
 	@Override
 	public void onVisit(GameInstance gi) {
 		gi.terminal.display(welcomeMessage, gi);
+		gi.player.availableTrades = shop.availableTrades;
 	}
 }

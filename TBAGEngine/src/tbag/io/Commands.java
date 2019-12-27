@@ -193,7 +193,7 @@ public class Commands {
 		sb.append("\n&6	Current Location: " + gameInstance.player.currentLocation.dspName + "( " + l.toString().split("tbag.location." + type + ".")[1] + " )" );
 		sb.append("\n&6	Available Trades:");
 		for(Trade t : gameInstance.player.availableTrades) {
-			sb.append("\n&5		" + t.itemAvailable.name + " for " + t.cost);
+			sb.append("\n&5		" + t.itemAvailable.name + " | cost: " + t.cost);
 		}
 		sb.append("\n&6	Iventory Contents:");
 		for(Item i : gameInstance.player.inv.inventoryItems) {
@@ -214,7 +214,7 @@ public class Commands {
 			TownLocation tl = (TownLocation)l;
 			sb.append("\n&6 	Shop Contents:");
 			for (Trade t : tl.shop.availableTrades) {
-				sb.append("\n&5		" + t.itemAvailable.name + " for " + t.cost);
+				sb.append("\n&5		" + t.itemAvailable.name + " | cost: " + t.cost);
 			}
 		}catch(Exception e) {}
 		sb.append("\n&3Terminal:");
