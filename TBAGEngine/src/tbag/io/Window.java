@@ -31,11 +31,11 @@ public class Window {
 	public JTextPane imageDisplay;	
 	public JTextField input;
 	public JScrollPane scrollPane;
-	public int scale = 2;
+	private int scale = 1;
 	public StyledDocument document;
 	private Semaphore semaphore = new Semaphore(0);
 	private String inputText;
-	
+	private JScrollBar vertical;
 	private Style style;
 	
 	/**
@@ -44,6 +44,7 @@ public class Window {
 	 * @param sizeY height of the window in pixels
 	 */
 	public Window(int sizeX, int sizeY) {
+		scale = (sizeX / 800);
 		frame = new JFrame();
 		frame.setTitle("test");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,7 +83,7 @@ public class Window {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
-		JScrollBar vertical = scrollPane.getVerticalScrollBar();
+		vertical = scrollPane.getVerticalScrollBar();
 		
 		input.addActionListener(new ActionListener() {
 			@Override
@@ -91,8 +92,8 @@ public class Window {
 				if(text.length() > 0) {
 					inputText = text;
 					input.setText("");
-					vertical.setValue( vertical.getMaximum() );
 					semaphore.release();
+					drop();
 				}
 			}
 		});
@@ -134,6 +135,7 @@ public class Window {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		drop();
 	}
 	
 	/**
@@ -151,6 +153,7 @@ public class Window {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		drop();
 	}
 	
 	/**
@@ -167,6 +170,11 @@ public class Window {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		drop();
+	}
+	
+	public void drop() {
+		vertical.setValue(vertical.getMaximum());
 	}
 	
 	/**
@@ -180,7 +188,6 @@ public class Window {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("here");
 		return inputText;
 	}
 
