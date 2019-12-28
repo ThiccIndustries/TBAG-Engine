@@ -185,6 +185,7 @@ public class Commands {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\nDev Data: ");
 		sb.append("\n&3Player:");
+		sb.append("\n&6	UUID: " + gameInstance.player.toString().split("tbag.io.")[1]);
 		sb.append("\n&6	Alive: " +gameInstance.player.alive);
 		sb.append("\n&6	Currency: " +gameInstance.player.currency);
 		sb.append("\n&6	Currency Name: " +gameInstance.player.currencyName);
@@ -200,7 +201,7 @@ public class Commands {
 			sb.append("\n&5		" + i.name + " - " + gameInstance.player.inv.inventoryQuantities.get(gameInstance.player.inv.inventoryItems.indexOf(i)));
 		}
 		sb.append("\n&3Location: ");
-		sb.append("\n&6	UUID: " + l.toString().split("tbag.location." + type + ".")[1]);
+		sb.append("\n&6	UUID: " + l.toString().split("tbag.location.")[1]);
 		sb.append("\n&6	Name: " + l.dspName);
 		sb.append("\n&6	Desc: " + l.dspDesc);
 		sb.append("\n&6	Type: " + type);
@@ -218,8 +219,10 @@ public class Commands {
 			}
 		}catch(Exception e) {}
 		sb.append("\n&3Terminal:");
+		sb.append("\n&6	UUID: " + gameInstance.terminal.toString().split("tbag.io.")[1]);
 		sb.append("\n&6	Last Location: " + gameInstance.terminal.lastLocation.dspName + "( " + l.toString().split("tbag.location." + type + ".")[1] + " )" );
 		sb.append("\n&3Window:");
+		sb.append("\n&6	UUID: " + gameInstance.window.toString().split("tbag.io.")[1]);
 		sb.append("\n&6	Resolution: [ " + gameInstance.window.sizeX + " x " + gameInstance.window.sizeY + " ]");
 		sb.append("\n&6	Scale: " + gameInstance.window.scale);
 		sb.append("\n&6	Font Size: " + (int)(12 * gameInstance.window.scale));
