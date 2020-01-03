@@ -97,6 +97,8 @@ public class ItemRestrictedLocation extends Location{
 			restrictedTravelDirTemp -= 2;
 		}
 		
+		//Spaghetti 
+		
 		if(dir.equals("north") && (!restrictNorth || gameInstance.player.inv.inventoryItems.contains(itemRequired))) {
 			gameInstance.player.currentLocation = this.northLocation;
 		}else if(dir.equals("east") && (!restrictEast || gameInstance.player.inv.inventoryItems.contains(itemRequired))) {
@@ -106,6 +108,7 @@ public class ItemRestrictedLocation extends Location{
 		}else if(dir.equals("west") && (!restrictWest || gameInstance.player.inv.inventoryItems.contains(itemRequired))) {
 			gameInstance.player.currentLocation = this.westLocation;
 		}else{ return("You need a(n) " + itemRequired.name + " " + reason); }
+		
 		return null;
 	}
 }
