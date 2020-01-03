@@ -10,10 +10,10 @@ import tbag.io.GameInstance;
 public class Location {
 	public String dspName = "location";
 	public String dspDesc = "a location";
-	public Location northLocation; //location to the north
-	public Location eastLocation; //east
-	public Location southLocation; //south
-	public Location westLocation; //west
+	public Location northLocation = null; //location to the north
+	public Location eastLocation = null; //east
+	public Location southLocation = null; //south
+	public Location westLocation = null; //west
 	
 	/**
 	 * Used to determine what adjacent locations to display.
@@ -147,4 +147,24 @@ public class Location {
 	 * @param gameInstance The current <code>GameInstance</code>
 	 */
 	public void onVisit(GameInstance gameInstance) { }
+	
+	public String travel(String dir, GameInstance gameInstance) { 
+		switch (dir) {
+		case "north":
+			gameInstance.player.currentLocation = gameInstance.player.currentLocation.northLocation;
+			break;
+		case "east":
+			gameInstance.player.currentLocation = gameInstance.player.currentLocation.eastLocation;
+			break;
+		case "south":
+			gameInstance.player.currentLocation = gameInstance.player.currentLocation.southLocation;
+			break;
+		case "west":
+			gameInstance.player.currentLocation = gameInstance.player.currentLocation.westLocation;
+			break;	
+		default:
+			return ("I don't know which way that is.");
+	}
+	return null;
+	}
 }

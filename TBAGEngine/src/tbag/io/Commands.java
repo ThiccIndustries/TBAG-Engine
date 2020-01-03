@@ -24,7 +24,6 @@ import tbag.management.Trade;
  * @author Trevor Skupien
  */
 public class Commands {
-
 	
 	/**
 	 * Repeats the given message
@@ -49,23 +48,7 @@ public class Commands {
 	 */
 	public String go(String[] direction, GameInstance gameInstance) { 
 		String dir = direction[0].toLowerCase();
-		switch (dir) {
-			case "north":
-				gameInstance.player.currentLocation = gameInstance.player.currentLocation.northLocation;
-				break;
-			case "east":
-				gameInstance.player.currentLocation = gameInstance.player.currentLocation.eastLocation;
-				break;
-			case "south":
-				gameInstance.player.currentLocation = gameInstance.player.currentLocation.southLocation;
-				break;
-			case "west":
-				gameInstance.player.currentLocation = gameInstance.player.currentLocation.westLocation;
-				break;	
-			default:
-				return ("I don't know which way that is.");
-		}
-		return null;
+		return gameInstance.player.currentLocation.travel(dir, gameInstance);
 	}
 	
 	/**
@@ -179,7 +162,7 @@ public class Commands {
 	 * Displays all variable values in <code>gameInstance</code>
 	 * @param args Not used in this command
 	 * @param gameInstance The current Game Instance
-	 * @return returns a formatted <code>String<code>
+	 * @return returns a formatted <code>String</code>
 	 */
 	public String dev(String[] args, GameInstance gameInstance) {
 		StringBuilder sb = new StringBuilder();
