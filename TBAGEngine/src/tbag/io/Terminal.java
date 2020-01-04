@@ -18,24 +18,24 @@ public class Terminal {
 	 * Uses Wad's optimum 16 color palette
 	 */
 	public Color[] colors = {
-		new Color(0,0,0), //black 0
-		new Color(0,0,170), //dk gray 1
-		new Color(0,170,0), //red 2
-		new Color(0,170,170), //blue 3
-		new Color(170,0,0), //green 4
-		new Color(170,0,170), //brown 5
-		new Color(255,170,0), //purple 6
-		new Color(170,170,170), //lt gray 7
-		new Color(85,85,85), //lt green 8 
-		new Color(85,85,255), //lt blue 9
-		new Color(85,255,85), //cyan a
-		new Color(85,255,255), //orange b
-		new Color(255,85,85), //yellow c
-		new Color(255,85,255), //tan d
-		new Color(255,255,85), //pink e
-		new Color(255,255,255) //white f
+		new Color(0,0,0),
+		new Color(0,0,170),
+		new Color(0,170,0),
+		new Color(0,170,170),
+		new Color(170,0,0),
+		new Color(170,0,170),
+		new Color(255,170,0),
+		new Color(170,170,170),
+		new Color(85,85,85),
+		new Color(85,85,255),
+		new Color(85,255,85),
+		new Color(85,255,255),
+		new Color(255,85,85),
+		new Color(255,85,255),
+		new Color(255,255,85),
+		new Color(255,255,255)
 	};
-	//private Color[] colorCodes = {Color.white, Color.blue, Color.green, Color.cyan, Color.red, Color.magenta, Color.yellow, Color.lightGray};
+
 	/**
 	 * Displays the player's current location's name and description.
 	 * Depending on the locations display mode, will display the name of adjacent locations.
@@ -45,7 +45,7 @@ public class Terminal {
 		if(lastLocation != gi.player.currentLocation) {
 			gi.player.availableTrades = new ArrayList<Trade>();
 			StringBuilder sb = new StringBuilder();
-			sb.append("\n&c> " + gi.player.currentLocation.dspName + " <");
+			sb.append("\n&e> " + gi.player.currentLocation.dspName + " <");
 			sb.append("\n&f" + gi.player.currentLocation.dspDesc);
 			sb.append("\n");
 			for(int i = 0; i < gi.player.currentLocation.dspDesc.length(); i++)
