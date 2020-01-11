@@ -40,6 +40,7 @@ public class Window {
 	
 	public int sizeX = 0;
 	public int sizeY = 0;
+	
 	/**
 	 * Constructor creating and opening the window
 	 * @param sizeX width of the window in pixels
